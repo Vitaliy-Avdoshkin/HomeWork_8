@@ -3,6 +3,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+load_dotenv(override=True)
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -22,6 +24,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "lms",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -100,3 +104,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "users.User"
