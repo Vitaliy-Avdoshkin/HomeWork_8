@@ -16,19 +16,19 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("User  created successfully."))
 
         Payment.objects.create(
-            owner=user,
+            client=user,
             payment_date="2023-10-01",
-            paid_course_id=2,
+            paid_course_id=3,
             paid_lesson=None,
             amount=100.00,
             type="CASH",
         )
 
         Payment.objects.create(
-            owner=user,
+            client=user,
             payment_date="2023-10-02",
             paid_course=None,
-            paid_lesson_id=3,
+            paid_lesson_id=1,
             amount=150.00,
             type="BANK_TRANSFER",
         )
