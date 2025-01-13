@@ -16,6 +16,3 @@ class PaymentViewSet(ModelViewSet):
         "type",
     )
     ordering_fields = ("payment_date",)
-
-
-1
