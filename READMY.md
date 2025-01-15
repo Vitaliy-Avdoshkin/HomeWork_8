@@ -57,6 +57,7 @@ poetry add django
 poetry add redis
 pip install djangorestframework
 pip install django-filter
+pip install djangorestframework-simplejwt
 ````
 
 6. Инициализируйте django-проект внутри текущей директории
