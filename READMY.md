@@ -56,6 +56,7 @@ poetry add psycopg2
 poetry add django
 poetry add redis
 pip install djangorestframework
+pip install django-filter
 ````
 
 6. Инициализируйте django-проект внутри текущей директории
