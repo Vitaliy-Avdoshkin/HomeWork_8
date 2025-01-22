@@ -55,8 +55,10 @@ poetry add python-dotenv
 poetry add psycopg2
 poetry add django
 poetry add redis
+poetry add ipython
 pip install djangorestframework
 pip install django-filter
+pip install djangorestframework-simplejwt
 ````
 
 6. Инициализируйте django-проект внутри текущей директории
