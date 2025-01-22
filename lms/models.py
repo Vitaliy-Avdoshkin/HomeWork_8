@@ -23,6 +23,12 @@ class Course(models.Model):
         null=True,
         help_text="Загрузите превью",
     )
+    user = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Курс"
@@ -65,6 +71,12 @@ class Lesson(models.Model):
         verbose_name="Ссылка на видео",
         help_text="Загрузите видео",
     )
+    user = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Урок"
@@ -77,7 +89,9 @@ class Lesson(models.Model):
 class Subscription(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Курс")
     user = models.ForeignKey(
-        AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Пользователь"
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Пользователь",
     )
 
     class Meta:
