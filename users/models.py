@@ -75,9 +75,12 @@ class Payment(models.Model):
     )
     amount = models.PositiveIntegerField(verbose_name="Сумма оплаты")
     type = models.CharField(
-        max_length=50, choices=PAYMENT_CHOICES, verbose_name="Способ оплаты"
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name="Cпособ оплаты",
+        choices=PAYMENT_CHOICES,
     )
-
     link = models.URLField(
         max_length=400, blank=True, null=True, verbose_name="Ссылка на оплату"
     )
