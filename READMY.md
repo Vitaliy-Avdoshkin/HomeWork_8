@@ -59,6 +59,7 @@ poetry add ipython
 pip install djangorestframework
 pip install django-filter
 pip install djangorestframework-simplejwt
+pip install drf-yasg
 ````
 
 6. Инициализируйте django-проект внутри текущей директории
