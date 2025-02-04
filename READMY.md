@@ -73,10 +73,21 @@ django-admin startproject config .
 ````
 
 
-## Приложение по рассылки сообщений:
+## LMS-система:
 
-1. Создайте приложение mailing
+1. Создайте приложения lms и users
 ````
-python manage.py startapp mailing
+python manage.py startapp lms
+python manage.py startapp users
 ````
-2. Зарегистрируйте приложение в settings.py
+2. Зарегистрируйте приложения в settings.py
+3. Для приложения lms создайте модели: Course, Lesson, Subscription
+4. Для приложения users создайте модели: User, Payment
+5. Опишите CRUD для всех моделей на основе ViewSet и Generic-классов
+6. Создайте сериализаторы
+7. Настройте права доступа
+8. Опишите требуемые валидаторы
+9. Добавьте пагинацию
+10. Протестируйте полученный код
+11. Поключите и настройте вывод документации для проекта
+12. Настройте celery. Запуск селери и воркер : celery -A config worker --beat --scheduler django --loglevel=info
