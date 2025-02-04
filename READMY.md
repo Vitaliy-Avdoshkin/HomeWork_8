@@ -61,6 +61,10 @@ pip install django-filter
 pip install djangorestframework-simplejwt
 pip install drf-yasg
 pip install stripe
+pip install celery
+pip install eventlet -- только для Windows
+pip install django-celery-beat
+pip install redis
 ````
 
 6. Инициализируйте django-проект внутри текущей директории
