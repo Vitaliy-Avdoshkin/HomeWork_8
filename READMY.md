@@ -91,3 +91,5 @@ python manage.py startapp users
 10. Протестируйте полученный код
 11. Поключите и настройте вывод документации для проекта
 12. Настройте celery. Запуск селери и воркер : celery -A config worker --beat --scheduler django --loglevel=info
+13. Запуск селери и воркер : celery -A config worker --beat --scheduler django --loglevel=info
+14. Как запускать с докер из консоли: Ввести команду для сборки образов и запуска контейнеров: docker-compose up -d —build
