@@ -17,4 +17,6 @@ jobs:
 #        ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 #        ${{ secrets.CLONE_REPO }}
       run: ssh wioswa@51.250.102.212
+      env:
+        AWS_EC2_METADATA_DISABLED: true
 
