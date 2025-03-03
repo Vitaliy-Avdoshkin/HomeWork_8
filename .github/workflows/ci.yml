@@ -16,4 +16,4 @@ jobs:
 #      run: |
 #        ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 #        ${{ secrets.CLONE_REPO }}
-      run: ssh wioswa@158.160.92.99
+      run: ssh wioswa@51.250.102.212
