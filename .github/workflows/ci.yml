@@ -10,9 +10,16 @@ jobs:
 
 
     steps:
+    - name: Set up SSH
+      run:
+        sudo apt-get install -y sshpass  # Установка sshpass
 
+    - name: Add SSH host key
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
-    - name: Copy project files to server
+    - name: Join to server
 #      run: |
 #        ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 #        ${{ secrets.CLONE_REPO }}
