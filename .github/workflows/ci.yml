@@ -44,8 +44,8 @@ jobs:
 #          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/github
-          chmod 600 ~/.ssh/github
+          echo "$SSH_ЛУН" > ~/.ssh
+          chmod 600 ~/.ssh
           cat >>~/.ssh/config <<END
           Host target
             HostName $SSH_HOST
