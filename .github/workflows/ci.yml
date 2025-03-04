@@ -10,9 +10,12 @@ jobs:
 
 
     steps:
-#    - name: Set up SSH
-#      run:
-#        sudo apt-get install -y sshpass  # Установка sshpass
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_KEY }}
+
+
 #
     - name: Add SSH host key
       run: |
@@ -25,7 +28,7 @@ jobs:
 #        ${{ secrets.CLONE_REPO }}
       run:
 #        ssh -t -t StrictHostKeyChecking=yes wioswa@51.250.102.212
-        ssh wioswa@51.250.102.212
+        ssh -T -o StrictHostKeyChecking=no wioswa@51.250.99.186
 
 #      env:
 #        AWS_EC2_METADATA_DISABLED: true
