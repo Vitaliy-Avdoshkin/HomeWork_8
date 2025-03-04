@@ -3,53 +3,28 @@ name: HomeWork_8
 on: [push]
 
 jobs:
-#
-#
-#  deploy:
-#    runs-on: ubuntu-latest
-#
-#
-#    steps:
-#
-#    - name: Set up SSH
-#      uses: webfactory/ssh-agent@v0.9.0
-#      with:
-#        ssh-private-key: ${{ secrets.SSH_KEY }}
-#
-#    - name: Add SSH host key
-#      run: |
-#        mkdir -p ~/.ssh
-#        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
-#
-#    - name: Join to server
-##      run: |
-##        ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
-##        ${{ secrets.CLONE_REPO }}
-#      run:
-##        ssh -t -t StrictHostKeyChecking=yes wioswa@51.250.102.212
-#        ssh -T -o StrictHostKeyChecking=no wioswa@51.250.99.186
-##
-
 
 
   deploy:
-    name: Deploy
     runs-on: ubuntu-latest
+
+
     steps:
-      - name: Configure SSH
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-#          SSH_HOST: ${{ secrets.SSH_HOST }}
-#          SSH_USER: ${{ secrets.SSH_USER }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh
-          chmod 600 ~/.ssh
-          cat >>~/.ssh/config <<END
-          Host target
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/github
-            LogLevel ERROR
-            StrictHostKeyChecking no
-          END
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_KEY }}
+
+    - name: Add SSH host key
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+    - name: Join to server
+#      run: |
+#        ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+#        ${{ secrets.CLONE_REPO }}
+      run:
+#        ssh -t -t StrictHostKeyChecking=yes wioswa@51.250.102.212
+        ssh -T -o StrictHostKeyChecking=no wioswa@51.250.99.186
