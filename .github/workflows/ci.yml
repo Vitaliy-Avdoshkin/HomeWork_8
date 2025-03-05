@@ -16,10 +16,10 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_KEY }}
 
 
-#    - name: Add SSH host key
-#      run: |
-#        mkdir -p ~/.ssh
-#        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+    - name: Add SSH host key
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
     - name: Join to server
 #      run: ssh -T -o StrictHostKeyChecking=no wioswa@89.169.174.227
