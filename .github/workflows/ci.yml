@@ -22,6 +22,6 @@ jobs:
 #        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
     - name: Join to server
-#      run: ssh -T -o StrictHostKeyChecking=no wioswa@51.250.100.65
+      run: ssh -T -o StrictHostKeyChecking=no wioswa@10.129.0.22
 #      run: ssh wioswa@89.169.174.227
-      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+#      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
