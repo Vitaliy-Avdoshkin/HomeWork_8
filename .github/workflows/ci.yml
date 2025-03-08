@@ -18,7 +18,7 @@ jobs:
 
       - name: Save SSH key
         run: |
-          mkdir -p ~/.ssh
+          cd ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
