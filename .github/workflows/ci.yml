@@ -1,4 +1,4 @@
-name: HomeWork_81
+name: HomeWork_8
 
 on: [push]
 
@@ -19,4 +19,4 @@ jobs:
 
 
       - name: Join to server
-        run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 wioswa@158.160.10.91
+        run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 wioswa@51.250.96.80
