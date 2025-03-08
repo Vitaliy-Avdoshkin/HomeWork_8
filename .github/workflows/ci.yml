@@ -9,19 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.9.0
-#      uses: appleboy/ssh-action@master
-      with:
-        ssh-private-key: ${{ secrets.SSH_KEY }}
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+  #      uses: appleboy/ssh-action@master
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
 
-#    - name: Add SSH host key
-#      run: |
-#        mkdir -p ~/.ssh
-#        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+  #    - name: Add SSH host key
+  #      run: |
+  #        mkdir -p ~/.ssh
+  #        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
-    - name: Join to server
-      run: ssh -T -o StrictHostKeyChecking=no wioswa@158.160.10.91
-#      run: ssh wioswa@89.169.174.227
-#      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+      - name: Join to server
+        run: ssh -T -o StrictHostKeyChecking=no wioswa@158.160.10.91
+  #      run: ssh wioswa@89.169.174.227
+  #      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
