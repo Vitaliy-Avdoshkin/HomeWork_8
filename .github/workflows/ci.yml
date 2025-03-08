@@ -16,8 +16,14 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
 
+      - name: Save SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Add SSH key to agent
-        run: ssh-add -l
+        run: ssh-add ~/.ssh/id_rsa
 
       - name: Join to server
-        run: ssh -v -o StrictHostKeyChecking=no wioswa@158.160.10.91
+        run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa wioswa@158.160.10.91
