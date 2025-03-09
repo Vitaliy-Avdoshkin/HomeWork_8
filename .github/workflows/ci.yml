@@ -70,7 +70,7 @@ jobs:
 
       - name: Copy project files to server
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" --exclude '__pycache__' . wioswa@51.250.26.106
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" --exclude '__pycache__' . ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 
       - name: Install dependencies on server
         run: |
