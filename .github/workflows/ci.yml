@@ -61,20 +61,27 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Join to server
-        run: |
-          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
-
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run code
+      - name: Join to server
         run: |
-         apt-get update && apt-get install -y python3.12-venv && \
-         cd /root/Django_DRF && \
-         git switch feature/homework_35.2 && \
-         python3 -m venv venv && \
-         source venv/bin/activate && \
-         git pull && \
-         pip install -r requirements.txt && \
-         sudo systemctl restart nginx
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+            set -e
+
+            while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do
+              echo 'Waiting for other apt processes to finish...'
+              sleep 5
+            done
+            
+            apt-get update && apt-get install -y python3.12-venv && \
+            cd /wioswa/HomeWork_8 && \
+            git switch feature/homework_35.2 && \
+            python3 -m venv venv && \
+            source venv/bin/activate && \
+            git pull && \
+            pip install -r requirements.txt && \
+            sudo systemctl restart nginx
+
+      
+
