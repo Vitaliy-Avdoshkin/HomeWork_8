@@ -79,7 +79,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           cd ~
           git clone git@github.com:Vitaliy-Avdoshkin/HomeWork_8.git
-#          apt-get update && apt-get install -y python3.12-venv && \
           cd HomeWork_8
           git switch feature/hw_9_35.2 && \
           python3 -m venv venv && \
