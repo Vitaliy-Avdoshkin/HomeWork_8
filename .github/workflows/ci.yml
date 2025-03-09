@@ -67,3 +67,14 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Run code
+        run: |
+         apt-get update && apt-get install -y python3.12-venv && \
+         cd /root/Django_DRF && \
+         git switch feature/homework_35.2 && \
+         python3 -m venv venv && \
+         source venv/bin/activate && \
+         git pull && \
+         pip install -r requirements.txt && \
+         sudo systemctl restart nginx
