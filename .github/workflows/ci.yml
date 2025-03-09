@@ -1,59 +1,58 @@
-name: HomeWork_81
+name: HomeWork_8
 
 on: [push]
 
 jobs:
-#  test:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - name: Check out code
-#      uses: actions/checkout@v3
-#
-#    - name: Set up Python
-#      uses: actions/setup-python@v4
-#      with:
-#        python-version: '3.12'
-#
-#    - name: Cache pip
-#      uses: actions/cache@v3
-#      with:
-#        path: ~/.cache/pip
-#        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-#        restore-keys: |
-#          ${{ runner.os }}-pip-
-#
-#    - name: Install dependencies
-#      run: |
-#        python -m pip install --upgrade pip
-#        pip install -r requirements.txt
-#
-#    - name: Set up PostgreSQL
-#      run: |
-#        sudo apt-get update
-#        sudo apt-get install -y postgresql-client
-#        sudo service postgresql start
-#        sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'rest_user_password';"
-#        sudo -u postgres psql -c "CREATE DATABASE restdatabase;"
-#        sudo -u postgres psql -c "CREATE ROLE runner WITH LOGIN PASSWORD 'rest_user_password';"
-#        sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE restdatabase TO runner;"
-#        sudo -u postgres psql -c "GRANT CREATE ON SCHEMA public TO runner;"
-#        echo "DATABASE_URL=postgres://runner:rest_user_password@localhost/restdatabase" >> $GITHUB_ENV
-#
-#    - name: Run migrate
-#      run: |
-#        export SECRET_KEY="${{ secrets.SECRET_KEY }}"
-#        python manage.py migrate
-#
-#    - name: Run tests
-#      run: |
-#        export SECRET_KEY="${{ secrets.SECRET_KEY }}"
-#        python manage.py test
+  test:
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Set up PostgreSQL
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y postgresql-client
+        sudo service postgresql start
+        sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'rest_user_password';"
+        sudo -u postgres psql -c "CREATE DATABASE restdatabase;"
+        sudo -u postgres psql -c "CREATE ROLE runner WITH LOGIN PASSWORD 'rest_user_password';"
+        sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE restdatabase TO runner;"
+        sudo -u postgres psql -c "GRANT CREATE ON SCHEMA public TO runner;"
+        echo "DATABASE_URL=postgres://runner:rest_user_password@localhost/restdatabase" >> $GITHUB_ENV
+
+    - name: Run migrate
+      run: |
+        export SECRET_KEY="${{ secrets.SECRET_KEY }}"
+        python manage.py migrate
+
+    - name: Run tests
+      run: |
+        export SECRET_KEY="${{ secrets.SECRET_KEY }}"
+        python manage.py test
 
   deploy:
     runs-on: ubuntu-latest
-#    needs: test
+    needs: test
 
     steps:
       - name: Set up SSH
@@ -61,18 +60,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-
       - name: Join to server
         run: |
           ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 
       - name: Checkout code
         uses: actions/checkout@v3
-      
-
-#      - name: Copy project files to server
-#        run: |
-#          rsync -avz --exclude '__pycache__' . ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.DEPLOY_DIR }}
 
       - name: Deploy to Server
         run: |
@@ -86,42 +79,4 @@ jobs:
           git pull && \
           pip install -r requirements.txt && \
           sudo systemctl restart nginx
-          
           EOF
-
-
-#      - name: Install dependencies on server
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-#            cd HomeWork_8
-#            python3 -m venv venv
-#            source venv/bin/activate
-#            pip install -r requirements.txt
-#          EOF
-#
-#      - name: Apply migrations on server
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-#            cd ${{ secrets.DEPLOY_DIR }}
-#            source venv/bin/activate
-#            python manage.py migrate
-#          EOF
-#
-#      - name: Collect static files on server
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-#            cd ${{ secrets.DEPLOY_DIR }}
-#            source venv/bin/activate
-#            python manage.py collectstatic --noinput
-#          EOF
-#
-#      - name: Restart application
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-#            sudo systemctl restart myapp.service
-#          EOF
-
-            
-
-      
-
