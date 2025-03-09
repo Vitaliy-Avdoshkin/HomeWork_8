@@ -66,6 +66,8 @@ jobs:
         run: |
           ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 
+      - name: Checkout code
+        uses: actions/checkout@v3
       
 
       - name: Copy project files to server
