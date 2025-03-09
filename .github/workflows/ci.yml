@@ -61,12 +61,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Checkout code
-        uses: actions/checkout@v2
 
       - name: Join to server
         run: |
           ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
             
 
       
