@@ -89,7 +89,9 @@ jobs:
             cd HomeWork_8 
             python3 -m venv venv
             source venv/bin/activate
-            pip install -r requirements.txt
+            pip install poetry && \
+            poetry config virtualenvs.create false && \
+            poetry install --no-root
           EOF
 #
 #      - name: Apply migrations on server
