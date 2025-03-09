@@ -83,16 +83,14 @@ jobs:
           EOF
 
 
-#      - name: Install dependencies on server
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-#            cd HomeWork_8
-#            python3 -m venv venv
-#            source venv/bin/activate
-#            pip install poetry && \
-#            poetry config virtualenvs.create false && \
-#            poetry install --no-root
-#          EOF
+      - name: Install dependencies on server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd HomeWork_8
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+          EOF
 #
 #      - name: Apply migrations on server
 #        run: |
