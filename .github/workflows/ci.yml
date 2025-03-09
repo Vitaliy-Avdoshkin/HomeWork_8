@@ -63,11 +63,11 @@ jobs:
 
 
       - name: Join to server
-        run: |
-          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+#        run: |
+#          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 
-      - name: Checkout code
-        uses: actions/checkout@v2
+
             
 
       
