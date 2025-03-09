@@ -62,13 +62,11 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
 
-#      - name: Join to server
-#        run: |
-#          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
-
-      - name: Add server to known_hosts
+      - name: Join to server
         run: |
-         ssh-keyscan -H ${{ secrets.SSH_IP_ADDRESS }} >> ~/.ssh/known_hosts
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
+
+      
 
       - name: Copy project files to server
         run: |
