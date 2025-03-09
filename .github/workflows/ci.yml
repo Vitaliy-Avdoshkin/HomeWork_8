@@ -74,13 +74,13 @@ jobs:
         run: |
           rsync -avz --exclude '__pycache__' . ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}
 
-      - name: Deploy to Server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          cd ~
-          git clone git@github.com:Vitaliy-Avdoshkin/HomeWork_8.git
-          cd HomeWork_8
-          EOF
+#      - name: Deploy to Server
+#        run: |
+#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+#          cd ~
+#          git clone git@github.com:Vitaliy-Avdoshkin/HomeWork_8.git
+#          cd HomeWork_8
+#          EOF
 
 
 #      - name: Install dependencies on server
