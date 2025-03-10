@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 
 services:
 
@@ -21,6 +21,17 @@ services:
       - .:/app
     env_file:
       - .env
+
+#  nginx:
+#    build:
+#      context: ./nginx
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - static_volume:/app/staticfiles
+#    depends_on:
+#      - web
 
   db:
     image: postgres:16
