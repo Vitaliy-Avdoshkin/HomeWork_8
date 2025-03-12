@@ -24,6 +24,7 @@ class LessonTestCase(APITestCase):
         url = reverse("lms:Lesson_retrieve", args=(self.lesson.pk,))
         response = self.client.get(url)
         data = response.json()
+        print(data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("name"), self.lesson.name)
 
